@@ -1,24 +1,34 @@
-# README
+# 個人向け作付計画アプリ -MyCropPlan-
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+複数の畝や畑を年単位で管理できる作付管理アプリ
 
-* Ruby version
+### テーマを選んだ理由
+- 友人が自分の畑をもち趣味で作物を育てていますが、紙にて翌年の作付計画を行っているとのことでした。<br>計画の紙がなくなってしまうと過去の履歴が残らないことに困っているらしくスマートフォンで管理できるようなアプリが欲しいと相談されました。
+- 例えばトマトを植えれば3年以上同じトマトなどのナス科が植えられなくなります。（土の中の成分の偏りのため）
+- 上記のことから、作付計画アプリを作成しようと考えました。
 
-* System dependencies
+### ターゲットユーザー
+- 作付計画に悩んでいる人
+- 作付計画の履歴を残したい人
 
-* Configuration
+### 主な利用シーン
+- 畑などを年単位で管理、作付計画するとき
+- 過去の作付履歴を閲覧するとき
 
-* Database creation
+### 作物管理について
+- 作物は何科かで分類する、または葉、実、根で分類する
+- ポピュラーな作物については種まき時期や収穫時期などを作成しておく
+- 作物はユーザー自身でも追加できるようにする
+- 年単位で過去に植えたものを把握できるようにする
 
-* Database initialization
+## 設計書
+- 後日作成予定
+- [画面遷移図](https://www.figma.com/design/vOrIIYTBScPQM51u6QgDPf/MyCropPlan?node-id=0-1&t=ovzvUlVEzTBQHNXt-1)
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+著作権を考慮し、架空のデータを扱う予定です。
+なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
