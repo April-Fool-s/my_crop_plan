@@ -13,24 +13,30 @@
           </li>
 
           <% elsif user_signed_in? %>
-          <li class="nav-item mx-3">
-            <%= link_to destroy_user_session_path, method: :delete, style: "display:flex; align-items: center; flex-direction: column;"  do %>
-              <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #FFD43B;"></i>
-              <p class="mt-3" style="color: #FFD43B; font-size: 10px;">ログアウト</p>
-            <% end %>
-          </li>
+
+          <div id="sp-menu">
+            <a class="navbar-brand" href="/"><%= image_tag "MyCropPlan_whitelogo.png" ,size: "190x63", class: "img-fluid" %></a>
+            <ul>
+              <li><%= link_to users_mypage_edit_path do %>アカウント設定<% end %></li>
+              <li><a href="/">使い方</a></li>
+              <li><a href="#">カレンダー</a></li>
+              <li><%= link_to destroy_user_session_path, method: :delete do %>ログアウト<% end %></li>
+            </ul>
+          </div>
+
+          <div id="hm-icon">
+            <a class="menu-trigger" href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
 
           <% else %>
-          <li class="nav-item mx-3">
-            <%= link_to new_user_registration_path, style: "display:flex; align-items: center; flex-direction: column;" do %>
-              <i class="fa-solid fa-user-plus fa-xl" style="color: #FFD43B;"></i>
-              <p class="mt-3" style="color: #FFD43B; font-size: 10px;">新規登録</p>
-            <% end %>
-          </li>
-          <li class="nav-item mx-3">
+          <li class="nav-item mx-3 mt-4">
             <%= link_to user_session_path, style: "display:flex; align-items: center; flex-direction: column;" do %>
-              <i class="fa-solid fa-right-to-bracket fa-xl" style="color: #FFD43B;"></i>
-              <p class="mt-3" style="color: #FFD43B; font-size: 10px;">ログイン</p>
+              <i class="fa-solid fa-right-to-bracket fa-xl" style="color: #000;"></i>
+              <p class="mt-3" style="color: #000; font-size: 10px;">ログイン</p>
             <% end %>
           </li>
           <% end %>
