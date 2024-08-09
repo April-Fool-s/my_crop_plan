@@ -1,8 +1,8 @@
 <div class="container mx-auto">
   <div class="row">
 
-    <div class="col-sm-12 col-md-10 col-lg-8 bg-white my-3 p-4 shadow-lg mx-auto rounded">
-      <h5 class="mb-3">プロフィール編集</h5>
+    <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-4 mx-auto">
+      <h5 class="mb-3">アカウント設定</h5>
       <%= render "layouts/errors", object: @user %>
       <div class="row">
         <div class="col mx-2">
@@ -19,13 +19,8 @@
               <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
             </div>
 
-            <%= f.label :プロフィール画像 %>
-            <%= f.file_field :profile_image, placeholder: "プロフィール", accept: "image/*" %>
-
-      　　　　　　<div class="row justify-content-center">
-              <%= f.submit "更新", class: "btn btn-warning m-4" %>
-              <%= link_to "退会", users_confirm_path, class: "btn btn-danger m-4" %>
-      　　　　　　</div>
+    　　　　　　<div class="row justify-content-center"><%= f.submit "更新", class: "btn btn-warning m-4 btn-form" %></div>
+            <div class="row justify-content-center"><%= link_to "退会のお手続き", users_confirm_path, class: "btn btn-danger mx-4 btn-form" %></div>
 
           <% end %>
 
