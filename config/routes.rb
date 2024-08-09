@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    get 'users/mypage/edit' => 'users#edit'
+    patch 'users/mypage' => 'users#update'
+    get 'users/confirm' => 'users#confirm'
+    patch 'users/close_account' => 'users#close_account'
   end
 
 end
