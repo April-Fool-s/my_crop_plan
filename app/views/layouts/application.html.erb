@@ -11,6 +11,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <main style="padding-bottom: 80px;">
+      <%= yield %>
+    </main >
+    <%= render 'layouts/bottom_navbar' %>
   </body>
 </html>
