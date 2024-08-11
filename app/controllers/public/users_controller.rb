@@ -7,11 +7,8 @@ class Public::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to users_mypage_edit_path, notice: "ユーザー情報を変更しました"
+      redirect_to mypage_edit_users_path, notice: "ユーザー情報を変更しました"
     end
-  end
-
-  def confirm
   end
 
   def close_account
