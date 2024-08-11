@@ -24,6 +24,11 @@ a {
   text-decoration: none !important;
 }
 
+ .logo {
+  width: 250px;
+  height: 250px;
+}
+
 .btn-form {
   width: 100%;
 }

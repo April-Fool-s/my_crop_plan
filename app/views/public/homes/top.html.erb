@@ -1,2 +1,21 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container mx-auto">
+  <div class="row">
+
+    <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-5 mx-auto rounded">
+      <%= image_tag asset_path('my_crop_plan_logo.png', :alt => '画像'), class: "logo rounded-circle mx-auto mb-4 d-block" %>
+
+      <h1 class="text-center my-3" style="color: #4B6E00">MyCropPlan</h1>
+      <p class="text-center" style="color: #4B6E00">誰でも簡単に作付計画を作成</br>管理ができるサービスです</p>
+
+      <p class="text-center" style="color: #4B6E00">「毎年の計画を紙で作成している」</br>「紛失してしまい履歴が残らない」</p>
+
+      <p class="text-center" style="color: #4B6E00">上記のようなお悩み、</br>作付管理をサポートいたします!</p>
+
+      <div class="text-center mt-4">
+        <%= link_to '無料で始める', '#registrationModal', data: { toggle: 'modal' } ,class: "btn btn-primary mb-5" %>
+      </div>
+
+      <%#= render 'layouts/footer' %>
+    </div>
+  </div>
+</div>
