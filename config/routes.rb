@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
     end
     resources :crops
+    resources :fields
   end
 
 end
