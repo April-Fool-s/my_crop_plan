@@ -1,0 +1,27 @@
+<div class="container mx-auto">
+
+  <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-4 mx-auto">
+    <h4>畑一覧</h4>
+
+    <% if @fields.present? %>
+    <div class="row">
+      <div class="col fsize_13-18 my-1">畑名</div>
+      <div class="col fsize_13-18 my-1">住所</div>
+    </div>
+
+        <% @fields.each do |field| %>
+          <%= link_to field_path(field) do %>
+          <div class="row">
+            <div class="col fsize_13-18 my-1" style="background-color: #DEEAC3; height: 50px;"><%= field.name %></div>
+            <div class="col fsize_13-18 my-1" style="background-color: #DEEAC3; height: 50px;"><%= field.address %></div>
+          </div>
+          <% end %>
+        <% end %>
+
+    <% else %>
+    <div class="text-center mt-5">
+      表示できるものがありません
+    </div>
+    <% end %>
+  </div>
+</div>
