@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         post 'check_user'
       end
     end
+    resources :crops
   end
 
 end
