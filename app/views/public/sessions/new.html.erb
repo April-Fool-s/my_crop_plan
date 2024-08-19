@@ -22,9 +22,9 @@
             </div>
           <% end %>
 
-          <!--<div class="row justify-content-center">-->
-          <!--  <%#= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-secondary mx-3 mb-3 btn-form", id: "guest_login_btn" %>-->
-          <!--</div>-->
+          <div class="row justify-content-center">
+            <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-secondary mx-3 mb-3 btn-form", id: "guest_login_btn" %>
+          </div>
 
           <div class="text-center">
             <%= link_to '新規登録はこちら', '#registrationModal', data: { toggle: 'modal', dismiss: "modal" } %>

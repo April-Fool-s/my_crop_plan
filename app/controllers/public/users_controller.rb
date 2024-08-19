@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:check_name, :check_email, :check_user]
   before_action :set_current_user
+  before_action :ensure_guest_user, only: [:edit]
 
   def edit
   end
@@ -57,6 +58,13 @@ class Public::UsersController < ApplicationController
 
   def set_current_user
     @user = current_user
+  end
+
+  def ensure_guest_user
+    @user = current_user
+    if @user.guest_user?
+      redirect_to root_path , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
   end
 
   def user_params
