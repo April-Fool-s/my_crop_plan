@@ -17,7 +17,9 @@
           <div id="sp-menu">
             <a class="navbar-brand" href="/"><%= image_tag "MyCropPlan_whitelogo.png" ,size: "190x63", class: "img-fluid" %></a>
             <ul>
-              <li><%= link_to mypage_edit_users_path do %>アカウント設定<% end %></li>
+              <% unless current_user.guest_user? %>
+                <li><%= link_to mypage_edit_users_path do %>アカウント設定<% end %></li>
+              <% end %>
               <li><a href="/">使い方</a></li>
               <li><a href="#">カレンダー</a></li>
               <li><%= link_to destroy_user_session_path, method: :delete do %>ログアウト<% end %></li>
