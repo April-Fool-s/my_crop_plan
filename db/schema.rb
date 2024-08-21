@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2024_08_19_090752) do
     t.integer "field_section_id", null: false
     t.integer "crop_id", null: false
     t.integer "year", null: false
-    t.string "title"
     t.string "planting_method", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false

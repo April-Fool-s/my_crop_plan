@@ -5,7 +5,6 @@ class Public::PlansController < ApplicationController
   def new
     @plan = Plan.new
     @fields = current_user.fields.all
-    @field_sections = FieldSection.all
     @crops = Crop.all
   end
 

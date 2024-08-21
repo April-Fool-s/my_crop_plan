@@ -11,16 +11,13 @@
         <%= f.label :year, "年度(西暦)" %><span style="color: red;">*</span>
         <%= f.text_field :year, class: "form-control mb-3", placeholder: "2024" %>
 
-        <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title, class: "form-control mb-3", placeholder: "2024 ＊＊市A畑" %>
-
         <%= f.label :field_id, "畑名" %>
         <%= f.select :field_id, options_from_collection_for_select(@fields, :id, :name), { include_blank: '畑名を選択してください'} %>
 
         <%= f.label :field_section_id, "区画名" %>
         <%= f.select :field_section_id, [], {} %>
 
-        <%= f.label :crop_id, "作物名" %>
+        <%= f.label :crop_id, "植付作物名" %>
         <%= f.select :crop_id, options_from_collection_for_select(@crops, :id, :name), {}, { class: "form-control mb-3" } %>
 
         <%= f.label :planting_method, "植付方法" %>
