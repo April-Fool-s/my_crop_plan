@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     end
     resources :crops
     resources :fields
+    resources :field_sections, only: [:index]
+    resources :plans
   end
-
 end

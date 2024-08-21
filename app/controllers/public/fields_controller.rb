@@ -44,4 +44,5 @@ class Public::FieldsController < ApplicationController
   def fields_params
     params.require(:field).permit(:name, :address, :area, field_sections_attributes: [:id, :name, :_destroy])
   end
+
 end
