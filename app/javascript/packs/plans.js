@@ -10,7 +10,7 @@ document.addEventListener('turbolinks:load', function() {
 
     if (fieldId) {
       // 区画情報を取得
-      fetch(`/field_sections?field_id=${fieldId}`)
+      fetch(`/fields/field_section_list?field_id=${fieldId}`)
         .then(response => response.json())
         .then(data => {
           let options = '<option value="">区画名を選択してください</option>';

@@ -28,8 +28,11 @@ Rails.application.routes.draw do
       end
     end
     resources :crops
-    resources :fields
-    resources :field_sections, only: [:index]
+    resources :fields do
+      collection do
+        get "field_section_list"
+      end
+    end
     resources :plans
   end
 end

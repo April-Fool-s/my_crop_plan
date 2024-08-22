@@ -35,6 +35,13 @@ class Public::FieldsController < ApplicationController
     redirect_to fields_path
   end
 
+  def field_section_list
+    @field_sections = FieldSection.where(field_id: params[:field_id])
+    respond_to do |format|
+      format.json { render json: @field_sections }
+    end
+  end
+
   private
 
   def set_field
