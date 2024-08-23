@@ -1,4 +1,4 @@
-<%= javascript_pack_tag 'fields' %>
+<%= javascript_pack_tag 'forms' %>
 
 <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-5 mx-auto">
   <div class="ml-4"><%= render "layouts/errors", object: @field %></div>
@@ -7,7 +7,7 @@
   <h5>畑登録</h5>
 
     <div class="row">
-      <div class="col">
+      <div class="col" id="add_field_section">
         畑名<span style="color: red;">*</span>
         <%= f.text_field :name, class: "form-control mb-3", placeholder: "＊＊市A畑" %>
         住所
@@ -28,8 +28,8 @@
 
     <div class="row">
       <div class="col text-center">
-        <div id="field_sections_wrapper"></div>
-        <%= link_to '+', '#', id: 'add_field_sections', class: "btn btn-outline-dark rounded-circle mt-3 ml-auto shadow" %>
+        <div id="wrapper"></div>
+        <%= link_to '+', '#', id: 'add_button', class: "btn btn-outline-dark rounded-circle mt-3 ml-auto shadow" %>
       </div>
     </div>
 

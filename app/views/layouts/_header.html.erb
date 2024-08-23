@@ -15,7 +15,7 @@
           <% elsif user_signed_in? %>
 
           <div id="sp-menu">
-            <a class="navbar-brand" href="/"><%= image_tag "MyCropPlan_whitelogo.png" ,size: "190x63", class: "img-fluid" %></a>
+            <a class="navbar-brand"><%= image_tag "MyCropPlan_whitelogo.png" ,size: "190x63", class: "img-fluid" %></a>
             <ul>
               <% unless current_user.guest_user? %>
                 <li><%= link_to mypage_edit_users_path do %>アカウント設定<% end %></li>

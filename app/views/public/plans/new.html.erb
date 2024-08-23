@@ -1,9 +1,10 @@
+<%= javascript_pack_tag 'forms' %>
 <%= javascript_pack_tag 'plans' %>
 
 <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-5 mx-auto">
   <div class="ml-4"><%= render "layouts/errors", object: @plan %></div>
 
-  <%= form_with model: @plan, local: true do |f| %>
+  <%= form_with model: @plan do |f| %>
     <h5>作付計画登録</h5>
 
     <div class="row">
@@ -15,28 +16,50 @@
         <%= f.select :field_id, options_from_collection_for_select(@fields, :id, :name), { include_blank: '畑名を選択してください'} %>
 
         <%= f.label :field_section_id, "区画名" %>
-        <%= f.select :field_section_id, [], {} %>
-
-        <%= f.label :crop_id, "植付作物名" %>
-        <%= f.select :crop_id, options_from_collection_for_select(@crops, :id, :name), {}, { class: "form-control mb-3" } %>
-
-        <%= f.label :planting_method, "植付方法" %>
-        <%= f.radio_button :planting_method, "播種", checked: true  %>
-        <%= f.label :planting_method, '播種' %>
-
-        <%= f.radio_button :planting_method, "育苗" %>
-        <%= f.label :planting_method, '育苗' %>
-
-        <%= f.label :start_date, "作業開始予定日" %>
-        <%= f.date_field :start_date, class: "form-control mb-3" %>
-
-        <%= f.label :end_date, "作業終了予定日" %>
-        <%= f.date_field :end_date, class: "form-control mb-3" %>
-
-        <%= f.label :note, "メモ" %>
-        <%= f.text_area :note, class: "form-control mb-3" %>
+        <%= f.select :field_section_id, [], { include_blank: '区画名を選択してください' } %>
       </div>
     </div>
+
+    <%= f.fields_for :plan_crops do |pc| %>
+    <div class="row">
+      <div class="col-12">
+        植付作物
+        <%= pc.text_field :name, class: "form-control mb-3", placeholder: "植付作物名" %>
+        <%#= pc.select :crop_id, options_from_collection_for_select(@crops, :id, :name), {}, { class: "form-control mb-3" } %>
+      </div>
+
+      <div class="col-12">
+        植付方法
+        <%= pc.radio_button :planting_method, "播種", checked: true  %>
+        <%= pc.label :planting_method, '播種' %>
+
+        <%= pc.radio_button :planting_method, "育苗" %>
+        <%= pc.label :planting_method, '育苗' %><br>
+      </div>
+
+      <div class="col-6">
+        <%= pc.label :start_date, "作業開始予定日" %>
+        <%= pc.date_field :start_date, class: "form-control mb-3" %>
+      </div>
+
+      <div class="col-6">
+        <%= pc.label :end_date, "作業終了予定日" %>
+        <%= pc.date_field :end_date, class: "form-control mb-3" %>
+      </div>
+
+      <div class="col-12">
+        <%= pc.text_area :note, class: "form-control mb-3", placeholder: "メモ" %>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col">
+        <div id="wrapper"></div>
+        <div class="text-center"><%= link_to '+', '#', id: 'add_button', class: "btn btn-outline-dark rounded-circle mt-3 ml-auto shadow" %></div>
+      </div>
+    </div>
+
 
     <div class="row">
       <div class="col text-center my-3">

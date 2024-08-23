@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_19_090752) do
+ActiveRecord::Schema.define(version: 2024_08_23_065450) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -52,19 +52,26 @@ ActiveRecord::Schema.define(version: 2024_08_19_090752) do
     t.index ["user_id"], name: "index_fields_on_user_id"
   end
 
-  create_table "plans", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "field_id", null: false
-    t.integer "field_section_id", null: false
-    t.integer "crop_id", null: false
-    t.integer "year", null: false
+  create_table "plan_crops", force: :cascade do |t|
+    t.integer "plan_id", null: false
+    t.string "name", null: false
     t.string "planting_method", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["crop_id"], name: "index_plans_on_crop_id"
+    t.index ["plan_id"], name: "index_plan_crops_on_plan_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "field_id", null: false
+    t.integer "field_section_id", null: false
+    t.integer "year", null: false
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["field_id"], name: "index_plans_on_field_id"
     t.index ["field_section_id"], name: "index_plans_on_field_section_id"
     t.index ["user_id"], name: "index_plans_on_user_id"
@@ -86,7 +93,7 @@ ActiveRecord::Schema.define(version: 2024_08_19_090752) do
 
   add_foreign_key "field_sections", "fields"
   add_foreign_key "fields", "users"
-  add_foreign_key "plans", "crops"
+  add_foreign_key "plan_crops", "plans"
   add_foreign_key "plans", "field_sections"
   add_foreign_key "plans", "fields"
   add_foreign_key "plans", "users"

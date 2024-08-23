@@ -4,6 +4,7 @@ class Public::PlansController < ApplicationController
 
   def new
     @plan = Plan.new
+    @plan_crop = @plan.plan_crops.build
     @fields = current_user.fields.all
     @crops = Crop.all
   end
@@ -20,10 +21,17 @@ class Public::PlansController < ApplicationController
   def show
     @field = @plan.field
     @field_section = @plan.field_section
-    @crop = @plan.crop
+    @plan_crops = @plan.plan_crops
   end
 
   def edit
+    @fields = current_user.fields.all
+    @field_sections = @plan.field.field_sections.all
+  end
+
+  def update
+    @plan.update(plans_params)
+    redirect_to plan_path(@plan)
   end
 
   private
@@ -33,7 +41,7 @@ class Public::PlansController < ApplicationController
   end
 
   def plans_params
-    params.require(:plan).permit(:year, :title, :planting_method, :start_date, :end_date, :note, :field_id, :field_section_id, :crop_id)
+    params.require(:plan).permit(:field_id, :field_section_id, :year, :is_active, plan_crops_attributes: [:id, :name, :planting_method, :start_date, :end_date, :note, :_destroy])
   end
 
 end
