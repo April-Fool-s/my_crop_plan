@@ -22,6 +22,9 @@
 /* 全てのリンク */
 a {
   text-decoration: none !important;
+}
+
+a .color-black {
   color: #000 !important;
 }
 
@@ -34,6 +37,7 @@ a {
   width: 100%;
 }
 
+/*フォーム統一*/
 #plan_field_id,
 #plan_field_section_id,
 #plan_crop_id {
@@ -44,7 +48,7 @@ a {
   margin-bottom: 1rem;
 }
 
-/*ヘッターフッターアイコン*/
+/*ボトムナビバーアイコン*/
 .menu-icon {
   display: flex;
   align-items: center;

@@ -10,16 +10,20 @@
         <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @field.name %></div>
         区画名
         <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @field_section.name %></div>
-        作物名
-        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @crop.name %></div>
-        作付方法
-        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @plan.planting_method %></div>
-        作業開始予定日
-        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @plan.start_date %></div>
-        作業終了予定日
-        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @plan.end_date %></div>
-        メモ
-        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @plan.note %></div>
+
+        植付作物
+        <% @plan_crops.each do |pc| %>
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.name %></div>
+          作付方法
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.planting_method %></div>
+          作業開始予定日
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.start_date %></div>
+          作業終了予定日
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.end_date %></div>
+          メモ
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.note %></div>
+        <% end %>
+
       </div>
     </div>
 
