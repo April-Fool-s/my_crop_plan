@@ -40,7 +40,8 @@ a .color-black {
 /*フォーム統一*/
 #plan_field_id,
 #plan_field_section_id,
-#plan_crop_id {
+#plan_crop_id,
+#crop_plant_family {
   width: 100%;
   padding: 0.375rem 0.75rem;
   border: 1px solid #ced4da;
