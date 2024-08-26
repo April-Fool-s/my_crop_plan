@@ -16,6 +16,12 @@ class Public::PlansController < ApplicationController
   end
 
   def index
+    @fields = current_user.fields.all
+    @plans = Plan.includes(:plan_crops).all
+    #検索機能の記述
+    @plans = @plans.where(year: params[:year]) if params[:year].present?
+    @plans = @plans.where(field_id: params[:field_id]) if params[:field_id].present?
+    @plans = @plans.where(is_active: ActiveModel::Type::Boolean.new.cast(params[:status])) if params[:status].present?
   end
 
   def show
