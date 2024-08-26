@@ -1,2 +1,58 @@
-<h1>Public::Plans#index</h1>
-<p>Find me in app/views/public/plans/index.html.erb</p>
+<%= form_with url: plans_path, method: :get, local: true do %>
+   <div class="container">
+
+    <div class="row mt-4">
+      <div class="col">
+        <h2>作付計画一覧</h2>
+      </div>
+    </div>
+
+    <div class="form-row">
+    <div class="col">
+      <%= label_tag :field_id, "畑名" %>
+      <%= select_tag :field_id, options_from_collection_for_select(@fields, :id, :name, params[:field_id]), include_blank: '全て', class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= label_tag :status, "ステータス" %>
+      <%= select_tag :status, options_for_select([["全て", ""], ["進行中", "true"], ["完了", "false"]], params[:status]), class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= label_tag :year, "年度" %>
+      <%= text_field_tag :year, params[:year], class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= submit_tag "検索", class: "btn btn-primary mt-4" %>
+    </div>
+  </div>
+<% end %>
+
+  <div class="row mt-4">
+    <div class="col">
+        <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ステータス</th>
+            <th>年度</th>
+            <th>畑名</th>
+            <th>区画</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @plans.each do |plan| %>
+            <tr>
+              <td><%= plan.is_active ? "進行中" : "完了" %></td>
+              <td><%= plan.year %></td>
+              <td><%= plan.field.name if plan.field %></td>
+              <td><%= plan.field_section.name if plan.field_section %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= link_to '＋', new_plan_path, class: "btn rounded-circle", style: "background-color: #99B264; color: #FFF; position: fixed;" %>
+
+</div>
