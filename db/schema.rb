@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_23_065450) do
+ActiveRecord::Schema.define(version: 2024_08_26_022711) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2024_08_23_065450) do
   end
 
   create_table "crops", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "name", null: false
     t.string "plant_family", null: false
     t.string "rotation_year", null: false
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2024_08_23_065450) do
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_crops_on_user_id"
   end
 
   create_table "field_sections", force: :cascade do |t|
@@ -91,6 +93,7 @@ ActiveRecord::Schema.define(version: 2024_08_23_065450) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "crops", "users"
   add_foreign_key "field_sections", "fields"
   add_foreign_key "fields", "users"
   add_foreign_key "plan_crops", "plans"

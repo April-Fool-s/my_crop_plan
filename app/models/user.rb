@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :fields, dependent: :destroy
   has_many :plans, dependent: :destroy
+  has_many :crops, dependent: :destroy
 
   GUEST_USER_EMAIL = "guest@example.com"
 

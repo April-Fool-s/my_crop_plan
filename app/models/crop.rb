@@ -1,3 +1,5 @@
 class Crop < ApplicationRecord
-  has_many :plans, dependent: :destroy
+
+  # アソシエーション
+  belongs_to :user
 end
