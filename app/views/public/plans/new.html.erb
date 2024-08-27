@@ -1,7 +1,7 @@
 <%= javascript_pack_tag 'forms' %>
 <%= javascript_pack_tag 'plans' %>
 
-<div class="col-sm-12 col-md-10 col-lg-8 my-3 p-5 mx-auto">
+<div class="col-sm-12 col-md-10 col-lg-8 my-3 p-5 mx-auto" id="plan-form" data-context="<%= @plan.new_record? ? 'new' : 'edit' %>">
   <div class="ml-4"><%= render "layouts/errors", object: @plan %></div>
 
   <%= form_with model: @plan do |f| %>
@@ -10,12 +10,13 @@
     <div class="row">
       <div class="col">
         <%= f.label :year, "年度(西暦)" %><span style="color: red;">*</span>
-        <%= f.text_field :year, class: "form-control mb-3", placeholder: "2024" %>
+        <%= f.select :year, (1900..2100).to_a.map { |y| [y, y.to_s] }, { include_blank: '年を選択してください', selected: Date.today.year } %>
 
-        <%= f.label :field_id, "畑名" %>
-        <%= f.select :field_id, options_from_collection_for_select(@fields, :id, :name), { include_blank: '畑名を選択してください'} %>
+        <%= f.label :field_id, "畑名" %><span style="color: red;">*</span>
+        <%= f.select :field_id, options_from_collection_for_select(@fields, :id, :name, @fields.first.id), { include_blank: '畑名を選択してください' } %>
 
-        <%= f.label :field_section_id, "区画名" %>
+
+        <%= f.label :field_section_id, "区画名" %><span style="color: red;">*</span>
         <%= f.select :field_section_id, [], { include_blank: '区画名を選択してください' } %>
       </div>
     </div>
@@ -23,13 +24,13 @@
     <%= f.fields_for :plan_crops do |pc| %>
     <div class="row">
       <div class="col-12">
-        植付作物
+        <%= f.label :field_id, "植付作物名" %><span style="color: red;">*</span>
         <%= pc.text_field :name, class: "form-control mb-3", placeholder: "植付作物名" %>
         <%#= pc.select :crop_id, options_from_collection_for_select(@crops, :id, :name), {}, { class: "form-control mb-3" } %>
       </div>
 
       <div class="col-12">
-        植付方法
+        <%= f.label :field_id, "植付方法" %><span style="color: red;">*</span>
         <%= pc.radio_button :planting_method, "播種", checked: true  %>
         <%= pc.label :planting_method, '播種' %>
 
@@ -37,13 +38,15 @@
         <%= pc.label :planting_method, '育苗' %><br>
       </div>
 
-      <div class="col-6">
-        <%= pc.label :start_date, "作業開始予定日" %>
+      <div class="col-12">作業予定期間<span style="color: red;">*</span></div>
+
+      <div class="col-5">
         <%= pc.date_field :start_date, class: "form-control mb-3" %>
       </div>
 
-      <div class="col-6">
-        <%= pc.label :end_date, "作業終了予定日" %>
+      <div class="col-2 text-center">.......</div>
+
+      <div class="col-5">
         <%= pc.date_field :end_date, class: "form-control mb-3" %>
       </div>
 

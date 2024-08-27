@@ -38,6 +38,7 @@
             <th>年度</th>
             <th>畑名</th>
             <th>区画</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -47,12 +48,13 @@
               <td><%= plan.year %></td>
               <td><%= plan.field.name if plan.field %></td>
               <td><%= plan.field_section.name if plan.field_section %></td>
+              <td><%= link_to '編集',edit_plan_path(plan), 'data-turbolinks': false %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
-  <%= link_to '＋', new_plan_path, class: "btn rounded-circle", style: "background-color: #99B264; color: #FFF; position: fixed;" %>
+  <%= link_to '＋', new_plan_path, 'data-turbolinks': false, class: "btn rounded-circle", style: "background-color: #99B264; color: #FFF; position: fixed;" %>
 
 </div>

@@ -9,8 +9,11 @@ class Public::FieldsController < ApplicationController
 
   def create
     @field = current_user.fields.new(fields_params)
-    @field.save
-    redirect_to field_path(@field)
+    if @field.save
+      redirect_to field_path(@field)
+    else
+      render 'new'
+    end
   end
 
   def index
@@ -25,8 +28,11 @@ class Public::FieldsController < ApplicationController
   end
 
   def update
-    @field.update(fields_params)
-    redirect_to field_path(@field)
+    if @field.update(fields_params)
+      redirect_to field_path(@field)
+    else
+      render 'edit'
+    end
   end
 
   def destroy

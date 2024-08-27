@@ -8,8 +8,11 @@ class Public::CropsController < ApplicationController
 
   def create
     @crop = current_user.crops.new(crops_params)
-    @crop.save
-    redirect_to crop_path(@crop)
+    if @crop.save
+      redirect_to crop_path(@crop)
+    else
+      render 'new'
+    end
   end
 
   def index
@@ -19,6 +22,14 @@ class Public::CropsController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    if @crop.update(crops_params)
+      redirect_to crop_path(@crop)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
