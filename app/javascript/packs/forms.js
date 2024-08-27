@@ -1,17 +1,14 @@
 document.addEventListener('turbolinks:load', () => {
-
   // 動的入力フォーム
-  // fields/newまたはeditでfield_sectionsの入力フォームを追加するための記述
-  let wrapper = '#wrapper';
-  let addButton = '#add_button';
+  const addButton = document.getElementById("add_button");
+  const wrapper = document.getElementById("wrapper");
   let x = 1;
 
-  $(document).on("click", addButton, function(e) {
+  addButton.addEventListener("click", function(e) {
     e.preventDefault();
     x++;
 
-    let addFieldSection = document.querySelector('#add_field_section') !== null;
-
+    const addFieldSection = document.querySelector('#add_field_section') !== null;
     let formHtml;
 
     if (addFieldSection) {
@@ -27,7 +24,7 @@ document.addEventListener('turbolinks:load', () => {
           </div>
           <input type="hidden" name="field[field_sections_attributes][${x}][_destroy]" class="destroy-field" value="false">
         </div>
-    `;
+      `;
     } else {
       formHtml = `
         <div class="row nested-fields">
@@ -63,31 +60,31 @@ document.addEventListener('turbolinks:load', () => {
           <input type="hidden" name="plan[plan_crops_attributes][${x}][_destroy]" class="destroy-field" value="false">
         </div>
       `;
-
     }
 
-    $(wrapper).append(formHtml);
+    wrapper.insertAdjacentHTML('beforeend', formHtml);
   });
 
-  // fields/newでfield_sectionsの入力フォームを削除するための記述
-  $(document).on("click", ".remove_field", function(e) {
-    e.preventDefault();
+  // fields/newまたはeditでfield_sectionsの入力フォームを削除するための記述
+  document.addEventListener("click", function(e) {
+    if (e.target.closest(".remove_field")) {
+      e.preventDefault();
 
-    // fields/editでfield_sectionsの入力フォームを削除するための記述
-    if(confirm('この詳細を削除してもよろしいですか？')) {
-      let removeButton = $(e.target);
-      let nestedFields = removeButton.closest('.nested-fields');
-      let destroyField = nestedFields.find('.destroy-field');
-      if (destroyField.length > 0) {
-        destroyField.val('true');
-        removeButton.closest('.nested-fields').hide();
-        nestedFields.find('input').addClass('hidden');
+      if (confirm('この詳細を削除してもよろしいですか？')) {
+        const removeButton = e.target.closest(".remove_field");
+        const nestedFields = removeButton.closest('.nested-fields');
+        const destroyField = nestedFields.querySelector('.destroy-field');
 
-      } else {
-        removeButton.closest('.nested-fields').remove();
+        if (destroyField) {
+          destroyField.value = 'true';
+          nestedFields.style.display = 'none';
+
+          const inputs = nestedFields.querySelectorAll('input');
+          inputs.forEach(input => input.classList.add('hidden'));
+        } else {
+          nestedFields.remove();
+        }
       }
-
     }
   });
-
 });
