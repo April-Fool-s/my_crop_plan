@@ -35,7 +35,7 @@
     <% if @field.user == current_user %>
     <div class="row mt-3">
       <div class="col text-center">
-        <%= link_to edit_plan_path(@plan), class: "btn mx-2", style: "background-color: #D7C748;", 'data-turbolinks': false do %>
+        <%= link_to edit_plan_path(@plan), 'data-turbolinks': false, class: "btn mx-2", style: "background-color: #D7C748;", 'data-turbolinks': false do %>
           <i class="fa-solid fa-pen-to-square fa-lg px-3 mx-2"></i>
         <% end %>
         <%= link_to plan_path(@plan), method: :delete, class: "btn mx-2", style: "background-color: #CC6363;", data: { confirm: "作付計画を削除しますか？" } do %>

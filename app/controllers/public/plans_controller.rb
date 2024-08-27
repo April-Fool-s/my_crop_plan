@@ -5,14 +5,18 @@ class Public::PlansController < ApplicationController
   def new
     @plan = Plan.new
     @plan_crop = @plan.plan_crops.build
-    @fields = current_user.fields.all
     @crops = Crop.all
+    @fields = current_user.fields.all
   end
 
   def create
     @plan = current_user.plans.new(plans_params)
-    @plan.save
-    redirect_to plan_path(@plan)
+    if @plan.save
+      redirect_to plan_path(@plan)
+    else
+      @fields = current_user.fields.all
+      render 'new'
+    end
   end
 
   def index
@@ -31,19 +35,32 @@ class Public::PlansController < ApplicationController
   end
 
   def edit
-    @fields = current_user.fields.all
-    @field_sections = @plan.field.field_sections.all
+    set_fields_and_sections
   end
 
   def update
-    @plan.update(plans_params)
-    redirect_to plan_path(@plan)
+    if @plan.update(plans_params)
+      redirect_to plan_path(@plan)
+    else
+      set_fields_and_sections
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @plan.destroy
+    redirect_to plans_path
   end
 
   private
 
   def set_plan
     @plan = Plan.find(params[:id])
+  end
+
+  def set_fields_and_sections
+    @fields = current_user.fields.all
+    @field_sections = @plan.field.field_sections.all
   end
 
   def plans_params
