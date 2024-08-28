@@ -30,7 +30,12 @@ document.addEventListener('turbolinks:load', () => {
         <div class="row nested-fields">
           <div class="col-10">
             植付作物<span class="text-left" style="color: red;">*</span>
-            <input type="text" class="form-control plan_crop_name" name="plan[plan_crops_attributes][${x}][name]" placeholder="植付作物名">
+            <input type="text" class="form-control plan_crop_name" name="plan[plan_crops_attributes][${x}][name]" placeholder="植付作物名" list="crop-list">
+            <datalist id="crop-list">
+              <% Crop.all.each do |crop| %>
+                <option value="<%= crop.name %>">
+              <% end %>
+            </datalist>
           </div>
           <div class="col-2 d-flex align-items-center mt-4">
             <a href="#" class="remove_field btn btn-danger">

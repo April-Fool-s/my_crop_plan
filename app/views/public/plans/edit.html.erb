@@ -23,9 +23,13 @@
     <%= f.fields_for :plan_crops do |pc| %>
     <div class="row nested-fields">
       <div class="col-10">
-        植付作物
-        <%= pc.text_field :name, class: "form-control mb-3", placeholder: "植付作物名" %>
-        <%#= pc.select :crop_id, options_from_collection_for_select(@crops, :id, :name), {}, { class: "form-control mb-3" } %>
+        <%= pc.label :name, "植付作物名" %><span style="color: red;">*</span>
+        <%= pc.text_field :name, class: "form-control", placeholder: "植付作物名", list: "crop-list" %>
+        <datalist id="crop-list">
+          <% Crop.all.each do |crop| %>
+            <option value="<%= crop.name %>">
+          <% end %>
+        </datalist>
       </div>
       <div class="col-2 d-flex align-items-center mt-4">
         <%= link_to "#", class: "remove_field btn btn-danger mb-3" do %>
