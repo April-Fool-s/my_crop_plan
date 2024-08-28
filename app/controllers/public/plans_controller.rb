@@ -14,6 +14,7 @@ class Public::PlansController < ApplicationController
     if @plan.save
       redirect_to plan_path(@plan)
     else
+      @crops = Crop.all
       @fields = current_user.fields.all
       render 'new'
     end
