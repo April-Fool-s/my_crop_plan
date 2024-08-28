@@ -1,4 +1,6 @@
 class Plan < ApplicationRecord
+
+  # アソシエーション
   belongs_to :user
   belongs_to :field
   belongs_to :field_section
