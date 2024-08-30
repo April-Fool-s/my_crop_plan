@@ -10,7 +10,10 @@
     <div class="row">
       <div class="col">
         <%= f.label :year, "年度(西暦)" %><span style="color: red;">*</span>
-        <%= f.text_field :year, class: "form-control mb-3", placeholder: "2024" %>
+        <%= f.select :year, (1900..2100).to_a.map { |y| [y, y.to_s] }, { include_blank: '年を選択してください', selected: Date.today.year } %>
+
+        <%= f.label :is_active, "ステータス" %><span style="color: red;">*</span>
+        <%= f.select :is_active, [['進行中',true],['完了',false]] %>
 
         <%= f.label :field_id, "畑名" %>
         <%= f.select :field_id, options_from_collection_for_select(@fields, :id, :name, @plan.field_id), { include_blank: '畑名を選択してください' } %>
@@ -73,7 +76,7 @@
 
     <div class="row">
       <div class="col text-center my-3">
-        <%= f.submit '登録', class: 'btn btn-form mx-auto px-4', style: "background-color: #99B264; color: #FFF;" %>
+        <%= f.submit '更新', class: 'btn btn-form mx-auto px-4', style: "background-color: #D7C748; color: #FFF;" %>
       </div>
     </div>
   <% end %>
