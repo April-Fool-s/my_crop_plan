@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :plans, dependent: :destroy
   has_many :crops, dependent: :destroy
 
+  # コールバック
+  after_create :create_default_field_and_section
+
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
@@ -20,6 +23,13 @@ class User < ApplicationRecord
 
   def guest_user?
     email == GUEST_USER_EMAIL
+  end
+
+  private
+
+  def create_default_field_and_section
+    field = fields.create(name: "畑A")
+    field.field_sections.create(name: "区画A") if field.present?
   end
 
 end
