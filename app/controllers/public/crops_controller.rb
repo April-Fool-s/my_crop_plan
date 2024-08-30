@@ -16,6 +16,23 @@ class Public::CropsController < ApplicationController
   end
 
   def index
+    @crops = Crop.all
+    
+    # 検索機能
+    if params[:search].present?
+      @crops = @crops.where('name LIKE ? OR plant_family LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+  
+    # 並べ替え機能
+    case params[:sort]
+      when 'newest'
+        @crops = @crops.order(created_at: :desc)  # 新しい順
+      when 'oldest'
+        @crops = @crops.order(created_at: :asc)   # 古い順
+      else
+        @crops = @crops.order(created_at: :desc)  # デフォルトは新しい順
+    end
+  
   end
 
   def show
