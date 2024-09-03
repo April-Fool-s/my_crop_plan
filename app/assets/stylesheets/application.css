@@ -132,6 +132,33 @@ a .color-black {
   cursor: not-allowed;
 }
 
+/*カレンダー*/
+.calendar {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+.calendar table {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.calendar th,
+.calendar td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 8px;
+}
+
+.calendar th {
+  background-color: #d9e2b4;
+}
+
+.calendar td.active {
+  background-color: #e08a8a;
+}
+
 /*新規投稿用ボタン*/
 .create-btn {
     position: fixed;
