@@ -164,12 +164,12 @@ a .color-black {
     position: fixed;
     bottom: 100px;
     right: 24px;
-    display: flex;
-    gap: 16px;
-    align-items: flex-end;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    z-index: 9998;
+    display: flex !important;
+    justify-content: center !important; /* 水平方向の中央寄せ */
+    align-items: center !important; /* 垂直方向の中央寄せ */
     width: 50px;
     height: 50px;
+    gap: 16px !important;
+    background-color: #99B264 !important;
+    color: #FFF !important;
 }
