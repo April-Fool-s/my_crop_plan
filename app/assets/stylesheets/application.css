@@ -158,3 +158,18 @@ a .color-black {
 .calendar td.active {
   background-color: #e08a8a;
 }
+
+/*新規投稿用ボタン*/
+.create-btn {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    z-index: 9998;
+    width: 50px;
+    height: 50px;
+}
