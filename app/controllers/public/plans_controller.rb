@@ -20,6 +20,11 @@ class Public::PlansController < ApplicationController
     end
   end
 
+  def plan_index
+    @current_year = params[:year] || Date.today.year
+    @plans = current_user.plans.where(year: @current_year)
+  end
+
   def index
     @fields = current_user.fields.all
     @plans = current_user.plans.all

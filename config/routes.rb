@@ -33,6 +33,10 @@ Rails.application.routes.draw do
         get "field_section_list"
       end
     end
-    resources :plans
+    resources :plans do
+      collection do
+        get "plan_index"
+      end
+    end
   end
 end

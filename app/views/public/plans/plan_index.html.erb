@@ -1,0 +1,35 @@
+<%= javascript_pack_tag 'plan_index' %>
+
+<h1>作付計画</h1>
+<div class="year-selector">
+  <button id="prev-year"><</button>
+  <span id="current-year"><%= @current_year %></span>
+  <button id="next-year">></button>
+</div>
+<div class="calendar">
+  <table>
+    <thead>
+      <tr>
+        <th>畑名</th>
+        <th>区画</th>
+        <th>作物名</th>
+        <th>方法</th>
+        <th>1月</th>
+        <th>2月</th>
+        <th>3月</th>
+        <th>4月</th>
+        <th>5月</th>
+        <th>6月</th>
+        <th>7月</th>
+        <th>8月</th>
+        <th>9月</th>
+        <th>10月</th>
+        <th>11月</th>
+        <th>12月</th>
+      </tr>
+    </thead>
+    <tbody id="plan-body">
+    <%= render 'public/plans/plan_list', plans: @plans, current_year: @current_year %>
+    </tbody>
+  </table>
+</div>
