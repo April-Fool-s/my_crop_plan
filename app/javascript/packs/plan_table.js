@@ -15,7 +15,7 @@ document.addEventListener('turbolinks:load', () => {
   function updateYear(year) {
     currentYearSpan.textContent = year;
 
-    fetch(`/plans/plan_index?year=${year}`)
+    fetch(`/plans/plan_table?year=${year}`)
       .then(response => response.text())
       .then(html => {
         // HTMLをパースして、`plan-body` 部分を取り出す

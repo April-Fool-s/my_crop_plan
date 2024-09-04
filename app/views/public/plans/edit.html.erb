@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col">
         <%= f.label :year, "年度(西暦)" %><span style="color: red;">*</span>
-        <%= f.select :year, (1900..2100).to_a.map { |y| [y, y.to_s] }, { include_blank: '年を選択してください', selected: Date.today.year } %>
+        <%= f.select :year, (2000..2100).to_a.map { |y| [y, y.to_s] }, { include_blank: '年を選択してください', selected: Date.today.year } %>
 
         <%= f.label :is_active, "ステータス" %><span style="color: red;">*</span>
         <%= f.select :is_active, [['進行中',true],['完了',false]] %>

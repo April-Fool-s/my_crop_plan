@@ -21,7 +21,7 @@
                 <li><%= link_to mypage_edit_users_path do %>アカウント設定<% end %></li>
               <% end %>
               <li><a href="/">使い方</a></li>
-              <li><%= link_to plan_index_plans_path do %>カレンダー<% end %></li>
+              <li><%= link_to plan_table_plans_path, 'data-turbolinks': false do %>カレンダー<% end %></li>
               <li><%= link_to destroy_user_session_path, method: :delete do %>ログアウト<% end %></li>
             </ul>
           </div>

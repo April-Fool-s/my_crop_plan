@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col">
         <%= f.label :year, "年度(西暦)" %><span style="color: red;">*</span>
-        <%= f.select :year, (1900..2100).to_a.map { |y| [y, y.to_s] }, { include_blank: '年を選択してください', selected: Date.today.year } %>
+        <%= f.select :year, (2000..2100).to_a.map { |y| [y, y.to_s] }, { include_blank: '年を選択してください', selected: Date.today.year } %>
 
         <%= f.label :field_id, "畑名" %><span style="color: red;">*</span>
         <%= f.select :field_id, options_from_collection_for_select(@fields, :id, :name, @fields.first.id), { include_blank: '畑名を選択してください' } %>

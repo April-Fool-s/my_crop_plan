@@ -20,7 +20,7 @@
 
     <div class="col">
       <%= label_tag :year, "年度" %>
-      <%= text_field_tag :year, params[:year], class: "form-control" %>
+      <%= select_tag :year, options_for_select([["全て表示", ""]] + (2000..2100).to_a.map { |y| [y, y.to_s] }, params[:year]), class: "form-control" %>
     </div>
 
     <div class="col">
