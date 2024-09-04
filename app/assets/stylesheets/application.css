@@ -141,6 +141,7 @@ a .color-black {
 
 .calendar table {
   width: 100%;
+  margin : 0px auto;
   border: 1px solid #ccc;
 }
 
@@ -149,6 +150,15 @@ a .color-black {
   border: 1px solid #ccc;
   text-align: center;
   padding: 8px;
+  min-width: 55px;
+}
+
+.calendar th:nth-child(3) {
+  min-width: 150px; /* 必要に応じて調整 */
+}
+
+.calendar th:nth-child(1), td:nth-child(2) {
+  min-width: 100px; /* 必要に応じて調整 */
 }
 
 .calendar th {
@@ -157,6 +167,11 @@ a .color-black {
 
 .calendar td.active {
   background-color: #e08a8a;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* スクロールをスムーズにする */
 }
 
 /*新規投稿用ボタン*/

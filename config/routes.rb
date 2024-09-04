@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
     resources :plans do
       collection do
-        get "plan_index"
+        get "plan_table"
       end
     end
   end

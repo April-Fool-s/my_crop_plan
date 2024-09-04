@@ -4,10 +4,18 @@ document.addEventListener('turbolinks:load', () => {
   const wrapper = document.getElementById("wrapper");
   let x = 1;
 
+  // 編集時にxの初期値を設定
+  const existingFields = document.querySelectorAll('.nested-fields');
+  if (existingFields.length > 0) {
+    // 既存のフィールドから最大の番号を取得
+    x = Math.max(...Array.from(existingFields).map(field => {
+      const match = field.querySelector('input[name*="[name]"]').name.match(/\[(\d+)\]/);
+      return match ? parseInt(match[1], 10) : 0;
+    })) + 1;
+  }
+
   addButton.addEventListener("click", function(e) {
     e.preventDefault();
-    x++;
-
     const addFieldSection = document.querySelector('#add_field_section') !== null;
     let formHtml;
 
@@ -68,6 +76,7 @@ document.addEventListener('turbolinks:load', () => {
     }
 
     wrapper.insertAdjacentHTML('beforeend', formHtml);
+    x++; // 新しいフォームを追加した後にxをインクリメント
   });
 
   // fields/newまたはeditでfield_sectionsの入力フォームを削除するための記述

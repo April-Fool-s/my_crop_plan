@@ -20,7 +20,7 @@ class Public::PlansController < ApplicationController
     end
   end
 
-  def plan_index
+  def plan_table
     @current_year = params[:year] || Date.today.year
     @plans = current_user.plans.where(year: @current_year)
   end
