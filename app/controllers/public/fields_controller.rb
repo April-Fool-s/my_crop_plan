@@ -18,6 +18,25 @@ class Public::FieldsController < ApplicationController
 
   def index
     @fields = current_user.fields.all
+
+        # 住所の部分一致検索
+    if params[:address].present?
+      @fields = @fields.where("address LIKE ?", "%#{params[:address]}%")
+    end
+
+    # 並べ替え機能
+    if params[:sort].present?
+      case params[:sort]
+      when 'created_at_asc'
+        @fields = @fields.order(created_at: :asc)
+      when 'created_at_desc'
+        @fields = @fields.order(created_at: :desc)
+      when 'updated_at_asc'
+        @fields = @fields.order(updated_at: :asc)
+      when 'updated_at_desc'
+        @fields = @fields.order(updated_at: :desc)
+      end
+    end
   end
 
   def show
