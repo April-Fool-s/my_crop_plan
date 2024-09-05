@@ -19,7 +19,7 @@
               <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
             </div>
 
-    　     　<div class="row justify-content-center"><%= f.submit "更新", class: "btn btn-warning m-4 btn-form" %></div>
+    　     　<div class="row justify-content-center"><%= f.submit "更新", style: "background-color: #D7C748; color: #FFF", class: "btn m-4 btn-form" %></div>
             <div class="row justify-content-center"><%= link_to '退会のお手続き', '#closeAccountModal', data: { toggle: 'modal', dismiss: "modal" }, class: "btn btn-danger mx-4 btn-form" %></div>
           <% end %>
 

@@ -19,10 +19,14 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def after_sign_in_path_for(resource)
+    plan_table_plans_path
+  end
+
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
+    redirect_to plan_table_plans_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   protected

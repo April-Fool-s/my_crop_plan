@@ -9,23 +9,26 @@
 
     <div class="form-row">
     <div class="col">
-      <%= label_tag :field_id, "畑名" %>
+      <%= label_tag :field_id, "畑名", class: "fsize_13-18" %>
       <%= select_tag :field_id, options_from_collection_for_select(@fields, :id, :name, params[:field_id]), include_blank: '全て', class: "form-control" %>
     </div>
 
     <div class="col">
-      <%= label_tag :status, "ステータス" %>
+      <%= label_tag :status, "ステータス", class: "fsize_13-18" %>
       <%= select_tag :status, options_for_select([["全て", ""], ["進行中", "true"], ["完了", "false"]], params[:status]), class: "form-control" %>
     </div>
 
     <div class="col">
-      <%= label_tag :year, "年度" %>
+      <%= label_tag :year, "年度", class: "fsize_13-18" %>
       <%= select_tag :year, options_for_select([["全て表示", ""]] + (2000..2100).to_a.map { |y| [y, y.to_s] }, params[:year]), class: "form-control" %>
     </div>
 
     <div class="col">
-      <%= submit_tag "検索", class: "btn btn-primary mt-4" %>
+      <%= button_tag(type: 'submit', style: "margin-top: 30px;", class: 'btn btn-primary') do %>
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+      <% end %>
     </div>
+
   </div>
 <% end %>
 
@@ -34,10 +37,10 @@
         <table class="table table-bordered">
         <thead>
           <tr>
-            <th>ステータス</th>
-            <th>年度</th>
-            <th>畑名</th>
-            <th>区画</th>
+            <th class="fsize_13-18">ステータス</th>
+            <th class="fsize_13-18">年度</th>
+            <th class="fsize_13-18">畑名</th>
+            <th class="fsize_13-18">区画</th>
             <th></th>
           </tr>
         </thead>

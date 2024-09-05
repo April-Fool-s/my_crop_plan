@@ -121,7 +121,7 @@ document.addEventListener('turbolinks:load', () => {
     document.addEventListener("ajax:success", function(e) {
       let data = e.detail[0];
       if (data.status === true) {
-        location.href = "/";
+        location.href = "/plans/plan_table";
       } else if (data.status === false) {
         document.querySelector('#loginError').textContent = 'メールアドレスまたはパスワードが間違っています。';
         document.querySelector('#loginError').style.display = 'block';
