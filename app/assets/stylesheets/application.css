@@ -37,6 +37,11 @@ a .color-black {
   width: 100%;
 }
 
+/*フォントサイズ指定*/
+.fsize_13-18 {
+  font-size: clamp(13px, 3vw, 18px);;
+}
+
 /*フォーム統一*/
 #plan_year,
 #plan_is_active,
