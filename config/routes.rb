@@ -27,7 +27,11 @@ Rails.application.routes.draw do
         post 'check_user'
       end
     end
-    resources :crops
+    resources :crops do
+      collection do
+        get "crop_list"
+      end
+    end
     resources :fields do
       collection do
         get "field_section_list"

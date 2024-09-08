@@ -13,7 +13,7 @@
 
         植付作物
         <% @plan_crops.each do |pc| %>
-          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.name %></div>
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.crop.name %></div>
           作付方法
           <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.planting_method %></div>
           作業開始予定日

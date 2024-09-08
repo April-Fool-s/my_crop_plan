@@ -33,7 +33,6 @@ class Public::CropsController < ApplicationController
       else
         @crops = @crops.order(created_at: :desc)  # デフォルトは新しい順
     end
-
   end
 
   def show
@@ -57,6 +56,13 @@ class Public::CropsController < ApplicationController
     else
       flash.now[:alert] = "作物マスターをを削除できませんでした。"
       render 'show'
+    end
+  end
+
+  def crop_list
+    @crops = Crop.all
+    respond_to do |format|
+      format.json { render json: @crops }
     end
   end
 

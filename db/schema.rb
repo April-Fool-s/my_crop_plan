@@ -56,13 +56,14 @@ ActiveRecord::Schema.define(version: 2024_08_28_071631) do
 
   create_table "plan_crops", force: :cascade do |t|
     t.integer "plan_id", null: false
-    t.string "name", null: false
+    t.integer "crop_id", null: false
     t.string "planting_method", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.text "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["crop_id"], name: "index_plan_crops_on_crop_id"
     t.index ["plan_id"], name: "index_plan_crops_on_plan_id"
   end
 
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 2024_08_28_071631) do
   add_foreign_key "crops", "users"
   add_foreign_key "field_sections", "fields"
   add_foreign_key "fields", "users"
+  add_foreign_key "plan_crops", "crops"
   add_foreign_key "plan_crops", "plans"
   add_foreign_key "plans", "field_sections"
   add_foreign_key "plans", "fields"
