@@ -44,7 +44,7 @@
             <% @fields.each do |field| %>
               <tr>
                 <td><%= link_to field.name, field_path(field) %></td>
-                <td><%= field.address %></td>
+                <td><%= link_to field.address, field_path(field) %></td>
               </tr>
             <% end %>
           <% else %>

@@ -6,16 +6,17 @@ class Public::PlansController < ApplicationController
     @plan = Plan.new
     @plan_crop = @plan.plan_crops.build
     @crops = Crop.all
-    @fields = current_user.fields.all
+    set_fields
   end
 
   def create
     @plan = current_user.plans.new(plans_params)
     if @plan.save
-      redirect_to plan_path(@plan)
+      redirect_to plan_path(@plan), notice: "作付計画を登録しました。"
     else
       @crops = Crop.all
-      @fields = current_user.fields.all
+      set_fields
+      flash.now[:alert] = "作付計画を登録できませんでした。"
       render 'new'
     end
   end
@@ -26,7 +27,7 @@ class Public::PlansController < ApplicationController
   end
 
   def index
-    @fields = current_user.fields.all
+    set_fields
     @plans = current_user.plans.all
     #検索機能の記述
     @plans = @plans.where(year: params[:year]) if params[:year].present?
@@ -41,21 +42,31 @@ class Public::PlansController < ApplicationController
   end
 
   def edit
-    set_fields_and_sections
+    set_fields
+    set_field_sections
   end
 
   def update
     if @plan.update(plans_params)
-      redirect_to plan_path(@plan)
+      redirect_to plan_path(@plan), notice: "作付計画を編集しました。"
     else
-      set_fields_and_sections
+      set_fields
+      set_field_sections
+      flash.now[:alert] = "作付計画を編集できませんでした。"
       render 'edit'
     end
   end
 
   def destroy
-    @plan.destroy
-    redirect_to plans_path
+    if @plan.destroy
+      redirect_to plans_path, notice: "作付計画を削除しました。"
+    else
+      @field = @plan.field
+      @field_section = @plan.field_section
+      @plan_crops = @plan.plan_crops
+      flash.now[:alert] = "作付計画を削除できませんでした。"
+      render 'show'
+    end
   end
 
   private
@@ -64,8 +75,11 @@ class Public::PlansController < ApplicationController
     @plan = Plan.find(params[:id])
   end
 
-  def set_fields_and_sections
+  def set_fields
     @fields = current_user.fields.all
+  end
+
+  def set_field_sections
     @field_sections = @plan.field.field_sections.all
   end
 

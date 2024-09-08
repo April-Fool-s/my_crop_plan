@@ -41,17 +41,15 @@
             <th class="fsize_13-18">年度</th>
             <th class="fsize_13-18">畑名</th>
             <th class="fsize_13-18">区画</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @plans.each do |plan| %>
             <tr>
-              <td><%= plan.is_active ? "進行中" : "完了" %></td>
-              <td><%= plan.year %></td>
-              <td><%= plan.field.name if plan.field %></td>
-              <td><%= plan.field_section.name if plan.field_section %></td>
-              <td><%= link_to '編集',edit_plan_path(plan), 'data-turbolinks': false %></td>
+              <td><%= link_to plan.is_active ? "進行中" : "完了", plan_path(plan) %></td>
+              <td><%= link_to plan.year, plan_path(plan) %></td>
+              <td><%= link_to plan.field.name, plan_path(plan) %></td>
+              <td><%= link_to plan.field_section.name, plan_path(plan) %></td>
             </tr>
           <% end %>
         </tbody>

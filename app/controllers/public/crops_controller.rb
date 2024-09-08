@@ -9,20 +9,21 @@ class Public::CropsController < ApplicationController
   def create
     @crop = current_user.crops.new(crops_params)
     if @crop.save
-      redirect_to crop_path(@crop)
+      redirect_to crop_path(@crop), notice: "作物マスターを登録しました。"
     else
+      flash.now[:alert] = "作物マスターを登録できませんでした。"
       render 'new'
     end
   end
 
   def index
     @crops = Crop.all
-    
+
     # 検索機能
     if params[:search].present?
       @crops = @crops.where('name LIKE ? OR plant_family LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     end
-  
+
     # 並べ替え機能
     case params[:sort]
       when 'newest'
@@ -32,7 +33,7 @@ class Public::CropsController < ApplicationController
       else
         @crops = @crops.order(created_at: :desc)  # デフォルトは新しい順
     end
-  
+
   end
 
   def show
@@ -43,15 +44,20 @@ class Public::CropsController < ApplicationController
 
   def update
     if @crop.update(crops_params)
-      redirect_to crop_path(@crop)
+      redirect_to crop_path(@crop), notice: "作物マスターを編集しました。"
     else
+      flash.now[:alert] = "作物マスターを編集できませんでした。"
       render 'edit'
     end
   end
 
   def destroy
-    @crop.destroy
-    redirect_to crops_path
+    if @crop.destroy
+      redirect_to crops_path, notice: "作物マスターを削除しました。"
+    else
+      flash.now[:alert] = "作物マスターをを削除できませんでした。"
+      render 'show'
+    end
   end
 
   private

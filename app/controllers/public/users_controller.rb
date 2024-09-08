@@ -8,16 +8,19 @@ class Public::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to mypage_edit_users_path, notice: "ユーザー情報を変更しました"
+      redirect_to mypage_edit_users_path, notice: "ユーザー情報を変更しました。"
+    else
+      flash.now[:alert] = "ユーザー情報を変更できませんでした。"
+      render 'edit'
     end
   end
 
   def close_account
     if @user.update(is_active: false)
       reset_session
-      redirect_to new_user_registration_path, notice: "退会処理を実行しました"
+      redirect_to new_user_registration_path, notice: "退会処理を実行しました。"
     else
-      flash.now[:alert] = "退会処理を実行できませんでした"
+      flash.now[:alert] = "退会処理を実行できませんでした。"
       render 'edit'
     end
   end

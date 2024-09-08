@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :plans, dependent: :destroy
   has_many :crops, dependent: :destroy
 
+  # バリデーション
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+
   # コールバック
   after_create :create_default_field_and_section
 
