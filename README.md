@@ -25,9 +25,32 @@
 - 年単位で過去に植えたものを把握できるようにする
 
 ## 設計書
-- 後日作成予定
+- [ER図](https://drive.google.com/file/d/1JHhbHmxWcek06MM1lg_XO0_t_jVZQN6A/view?usp=sharing)</br>
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/11goHZnimDSgNWYi5ipbyZ9ZzbTTIzOb6bIxwJedvchw/edit?usp=sharing)</br>
 - [画面遷移図](https://www.figma.com/design/vOrIIYTBScPQM51u6QgDPf/MyCropPlan?node-id=0-1&t=ovzvUlVEzTBQHNXt-1)
 
+## Github運用ルール
+- mainブランチは常にリリース（デプロイ）できるような状態にある
+- developブランチを統合ブランチとする
+- トピックブランチは全てdevelopブランチから派生させる
+- 不具合発生時、Issuesで管理
+
+|ブランチ名      |役割                          |派生元  |マージ先  |
+|----------------|------------------------------|--------|----------|
+|main            |公開するものを置くブランチ    |        |　        |
+|develop         |開発中のものを置くブランチ    |main    |main      |
+|feature/*       |機能実装中に使うブランチ      |develop |develop   |
+|fix/*           |機能不具合修正中に使うブランチ|develop |develop   |
+|update/*        |機能更新中に使うブランチ      |develop |develop   |
+
+__コミットメッセージの記法__
+
+`feature:機能実装`
+`add:追加`
+`delete:削除`
+`fix:不具合修正`
+`update:更新`
+`close #:Issuesをclose`
 
 ## 使用素材
 著作権を考慮し、架空のデータを扱う予定です。

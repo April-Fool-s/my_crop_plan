@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-4 mx-auto">
+    <div class="row">
+      <div class="col fsize_13-18 my-auto">
+        <h4>畑詳細</h4>
+        畑名
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @field.name %></div>
+        住所
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @field.address %></div>
+        面積
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @field.area %></div>
+      </div>
+    </div>
+    区画名
+    <% @field_sections.each do |fs| %>
+      <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= fs.name %></div>
+    <% end %>
+
+    <div class="row">
+      <div class="col text-center fsize_10-13 my-2" style="color:#69727B;">作成日:<%= @field.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="col text-center fsize_10-13 my-2" style="color:#69727B;">更新日:<%= @field.updated_at.strftime('%Y/%m/%d') %></div>
+    </div>
+
+    <% if @field.user == current_user %>
+    <div class="row mt-3">
+      <div class="col text-center">
+        <%= link_to edit_field_path(@field), class: "btn mx-2", style: "background-color: #D7C748;", 'data-turbolinks': false do %>
+          <i class="fa-solid fa-pen-to-square fa-lg px-3 mx-2"></i>
+        <% end %>
+        <%= link_to field_path(@field), method: :delete, class: "btn mx-2", style: "background-color: #CC6363;", data: { confirm: "畑を削除しますか？\n紐付いている計画が削除される可能性があります" } do %>
+          <i class="fa-solid fa-trash fa-lg px-2 mx-2" style="color: #ffffff;"></i>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+</div>

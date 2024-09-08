@@ -1,0 +1,46 @@
+<div class="container mx-auto">
+  <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-4 mx-auto">
+    <h4>作物一覧</h4>
+
+    <!-- 検索フォーム -->
+    <%= form_with(url: crops_path, method: :get, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :search, '検索' %>
+        <%= f.text_field :search, class: 'form-control', value: params[:search], placeholder: '作物名または科名を入力' %>
+      </div>
+      <%= f.submit '検索', class: 'btn btn-primary' %>
+    <% end %>
+
+    <!-- 並べ替えのセレクトボックス -->
+    <div class="my-3">
+      <%= form_with(url: crops_path, method: :get, local: true, class: 'form-inline') do |f| %>
+        <%= f.label :sort, '並べ替え', class: 'mr-2' %>
+        <%= select_tag :sort, options_for_select([['新しい順', 'newest'], ['古い順', 'oldest']], params[:sort]), { onchange: 'this.form.submit();', class: 'form-control' } %>
+      <% end %>
+    </div>
+
+    <% if @crops.present? %>
+      <div class="row">
+        <div class="col fsize_13-18 my-1">作物名</div>
+        <div class="col fsize_13-18 my-1">科名</div>
+        <div class="col fsize_13-18 my-1">輪作年</div>
+      </div>
+
+      <% @crops.each do |crop| %>
+        <%= link_to crop_path(crop) do %>
+        <div class="row">
+          <div class="col fsize_13-18 my-1" style="background-color: #DEEAC3; height: 50px;"><%= crop.name %></div>
+          <div class="col fsize_13-18 my-1" style="background-color: #DEEAC3; height: 50px;"><%= crop.plant_family %></div>
+          <div class="col fsize_13-18 my-1" style="background-color: #DEEAC3; height: 50px;"><%= crop.rotation_year %></div>
+        </div>
+        <% end %>
+      <% end %>
+
+    <% else %>
+      <div class="text-center mt-5">
+        表示できるものがありません
+      </div>
+    <% end %>
+  </div>
+  <%= link_to '＋', new_crop_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+</div>

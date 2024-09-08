@@ -1,0 +1,49 @@
+<div class="container">
+
+  <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-4 mx-auto">
+    <div class="row">
+      <div class="col fsize_13-18 my-auto">
+        <h4>作付計画</h4>
+        年度
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @plan.year %></div>
+        畑名
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @field.name %></div>
+        区画名
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @field_section.name %></div>
+
+        植付作物
+        <% @plan_crops.each do |pc| %>
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.crop.name %></div>
+          作付方法
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.planting_method %></div>
+          作業開始予定日
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.start_date %></div>
+          作業終了予定日
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.end_date %></div>
+          メモ
+          <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= pc.note %></div>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center fsize_10-13 my-2" style="color:#69727B;">作成日:<%= @plan.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="col text-center fsize_10-13 my-2" style="color:#69727B;">更新日:<%= @plan.updated_at.strftime('%Y/%m/%d') %></div>
+    </div>
+
+    <% if @field.user == current_user %>
+    <div class="row mt-3">
+      <div class="col text-center">
+        <%= link_to edit_plan_path(@plan), 'data-turbolinks': false, class: "btn mx-2", style: "background-color: #D7C748;", 'data-turbolinks': false do %>
+          <i class="fa-solid fa-pen-to-square fa-lg px-3 mx-2"></i>
+        <% end %>
+        <%= link_to plan_path(@plan), method: :delete, class: "btn mx-2", style: "background-color: #CC6363;", data: { confirm: "作付計画を削除しますか？" } do %>
+          <i class="fa-solid fa-trash fa-lg px-2 mx-2" style="color: #ffffff;"></i>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+</div>

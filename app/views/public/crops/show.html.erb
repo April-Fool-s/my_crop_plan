@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-4 mx-auto">
+    <div class="row">
+      <div class="col fsize_13-18 my-auto">
+        <h4>作物詳細</h4>
+        作物名
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @crop.name %></div>
+        科名
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @crop.plant_family %></div>
+        輪作年
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @crop.rotation_year %></div>
+        コンパニオンプランツ
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @crop.companion %></div>
+        メモ
+        <div class="col fsize_13-18 p-3 my-2" style="background-color: #DEEAC3;"><%= @crop.note %></div>
+      </div>
+    </div>
+
+    <% if @crop.user == current_user %>
+    <div class="row mt-3">
+      <div class="col text-center">
+        <%= link_to edit_crop_path(@crop), class: "btn mx-2", style: "background-color: #D7C748;", 'data-turbolinks': false do %>
+          <i class="fa-solid fa-pen-to-square fa-lg px-3 mx-2"></i>
+        <% end %>
+        <%= link_to crop_path(@crop), method: :delete, class: "btn mx-2", style: "background-color: #CC6363;", data: { confirm: "作付計画を削除しますか？" } do %>
+          <i class="fa-solid fa-trash fa-lg px-2 mx-2" style="color: #ffffff;"></i>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+</div>
+

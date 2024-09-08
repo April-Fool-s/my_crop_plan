@@ -1,0 +1,61 @@
+<%= form_with url: plans_path, method: :get, local: true do %>
+   <div class="container">
+
+    <div class="row mt-4">
+      <div class="col">
+        <h2>作付計画一覧</h2>
+      </div>
+    </div>
+
+    <div class="form-row">
+    <div class="col">
+      <%= label_tag :field_id, "畑名", class: "fsize_13-18" %>
+      <%= select_tag :field_id, options_from_collection_for_select(@fields, :id, :name, params[:field_id]), include_blank: '全て', class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= label_tag :status, "ステータス", class: "fsize_13-18" %>
+      <%= select_tag :status, options_for_select([["全て", ""], ["進行中", "true"], ["完了", "false"]], params[:status]), class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= label_tag :year, "年度", class: "fsize_13-18" %>
+      <%= select_tag :year, options_for_select([["全て表示", ""]] + (2000..2100).to_a.map { |y| [y, y.to_s] }, params[:year]), class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= button_tag(type: 'submit', style: "margin-top: 30px;", class: 'btn btn-primary') do %>
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+      <% end %>
+    </div>
+
+  </div>
+<% end %>
+
+  <div class="row mt-4">
+    <div class="col">
+        <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="fsize_13-18">ステータス</th>
+            <th class="fsize_13-18">年度</th>
+            <th class="fsize_13-18">畑名</th>
+            <th class="fsize_13-18">区画</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @plans.each do |plan| %>
+            <tr>
+              <td><%= link_to plan.is_active ? "進行中" : "完了", plan_path(plan) %></td>
+              <td><%= link_to plan.year, plan_path(plan) %></td>
+              <td><%= link_to plan.field.name, plan_path(plan) %></td>
+              <td><%= link_to plan.field_section.name, plan_path(plan) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= link_to '＋', new_plan_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+
+</div>

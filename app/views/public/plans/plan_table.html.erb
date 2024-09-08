@@ -1,0 +1,53 @@
+<%= javascript_pack_tag 'plan_table' %>
+
+<div class="calendar">
+  <h5>作付計画表</h5>
+  <div class="year-selector m-3">
+    <span id="current-year"><%= @current_year %></span>
+    <span id="prev-year" class="mx-3"><</span>
+    <span id="next-year">></span>
+  </div>
+
+  <div class="scroll-container" id="scroll-inner">
+    <table>
+      <thead>
+        <tr>
+          <th>畑名</th>
+          <th>区画</th>
+          <th>作物名</th>
+          <th>方法</th>
+          <th>1月</th>
+          <th>2月</th>
+          <th>3月</th>
+          <th>4月</th>
+          <th>5月</th>
+          <th>6月</th>
+          <th>7月</th>
+          <th>8月</th>
+          <th>9月</th>
+          <th>10月</th>
+          <th>11月</th>
+          <th>12月</th>
+        </tr>
+      </thead>
+      <tbody id="plan-body">
+        <% @plans.each do |plan| %>
+          <% if plan.year == @current_year.to_i %>
+            <% plan.plan_crops.each do |crop| %>
+              <tr>
+                <td><%= plan.field.name %></td>
+                <td><%= plan.field_section.name %></td>
+                <td><%= crop.name %></td>
+                <td><%= crop.planting_method %></td>
+                <% (1..12).each do |month| %>
+                  <td class="<%= 'active' if crop.start_date.month <= month && crop.end_date.month >= month %>"></td>
+                <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to '＋', new_plan_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+</div>

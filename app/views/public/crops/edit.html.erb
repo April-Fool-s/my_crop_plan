@@ -1,0 +1,36 @@
+<div class="container">
+
+  <div class="col-sm-12 col-md-10 col-lg-8 my-3 p-5 mx-auto">
+    <div class="ml-4"><%= render "layouts/errors", object: @crop %></div>
+
+    <%= form_with model: @crop do |f| %>
+      <h5>作付計画登録</h5>
+
+      <div class="row">
+        <div class="col">
+          <%= f.label :name, "作物名" %><span style="color: red;">*</span>
+          <%= f.text_field :name, class: "form-control mb-3", placeholder: "トマト" %>
+
+          <%= f.label :plant_family, "科名" %><span style="color: red;">*</span>
+          <%= f.text_field :plant_family, placeholder: "ナス科" %>
+
+          <%= f.label :rotation_year, "輪作年" %><span style="color: red;">*</span>
+          <%= f.text_field :rotation_year, class: "form-control mb-3", placeholder: "4年以上" %>
+
+          <%= f.label :companion, "コンパニオンプランツ" %>
+          <%= f.text_area :companion, class: "form-control mb-3", placeholder: "ネギ、バジル、ニラ、落花生、 ビガンバナ科、マメ科、シソ科" %>
+
+          <%= f.label :note, "メモ" %>
+          <%= f.text_area :note, class: "form-control mb-3" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col text-center my-3">
+          <%= f.submit '更新', class: 'btn btn-form mx-auto px-4', style: "background-color: #D7C748; color: #FFF;" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

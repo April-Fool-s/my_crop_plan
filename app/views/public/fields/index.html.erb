@@ -1,0 +1,63 @@
+<%= form_with(url: fields_path, method: :get, local: true) do %>
+  <div class="container">
+
+    <!-- タイトル行 -->
+    <div class="row mt-4">
+      <div class="col">
+        <h2>畑一覧</h2>
+      </div>
+    </div>
+
+    <!-- 検索フォーム -->
+    <div class="form-row">
+      <!-- 住所の検索フィールド -->
+      <div class="col">
+        <%= label_tag :address, "住所で検索" %>
+        <%= text_field_tag :address, params[:address], class: "form-control", placeholder: "住所を入力" %>
+      </div>
+
+      <!-- 並べ替えフィールド -->
+      <div class="col">
+        <%= label_tag :sort, "並べ替え" %>
+        <%= select_tag :sort, options_for_select([['作成日（新しい順）', 'created_at_desc'], ['作成日（古い順）', 'created_at_asc'], ['更新日（新しい順）', 'updated_at_desc'], ['更新日（古い順）', 'updated_at_asc']], params[:sort]), class: "form-control" %>
+      </div>
+
+      <!-- 検索ボタン -->
+      <div class="col">
+        <%= submit_tag "検索", class: "btn btn-primary mt-4" %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- 畑一覧表示 -->
+  <div class="row mt-4">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>畑名</th>
+            <th>住所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @fields.present? %>
+            <% @fields.each do |field| %>
+              <tr>
+                <td><%= link_to field.name, field_path(field) %></td>
+                <td><%= link_to field.address, field_path(field) %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="2" class="text-center">表示できるものがありません</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 新規作成ボタン -->
+  <%= link_to '＋', new_field_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+
+</div>

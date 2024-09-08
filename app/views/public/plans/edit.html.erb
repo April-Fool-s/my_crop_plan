@@ -1,0 +1,79 @@
+<%= javascript_pack_tag 'forms' %>
+<%= javascript_pack_tag 'plans' %>
+
+<div class="col-sm-12 col-md-10 col-lg-8 my-3 p-5 mx-auto" id="plan-form" data-context="<%= @plan.new_record? ? 'new' : 'edit' %>">
+  <div class="ml-4"><%= render "layouts/errors", object: @plan %></div>
+
+  <%= form_with model: @plan do |f| %>
+    <h5>作付計画登録</h5>
+
+    <div class="row">
+      <div class="col">
+        <%= f.label :year, "年度(西暦)" %><span style="color: red;">*</span>
+        <%= f.select :year, (2000..2100).to_a.map { |y| [y, y.to_s] }, { include_blank: '年を選択してください', selected: Date.today.year } %>
+
+        <%= f.label :is_active, "ステータス" %><span style="color: red;">*</span>
+        <%= f.select :is_active, [['進行中',true],['完了',false]] %>
+
+        <%= f.label :field_id, "畑名" %>
+        <%= f.select :field_id, options_from_collection_for_select(@fields, :id, :name, @plan.field_id), { include_blank: '畑名を選択してください' } %>
+
+        <%= f.label :field_section_id, "区画名" %>
+        <%= f.select :field_section_id, options_from_collection_for_select(@field_sections, :id, :name, @plan.field_section_id), { include_blank: '区画名を選択してください' }, class: 'form-control mb-3' %>
+      </div>
+    </div>
+
+    <%= f.fields_for :plan_crops do |pc| %>
+    <div class="row nested-fields">
+      <div class="col-10">
+        <%= pc.label :crop_id, "植付作物名" %><span style="color: red;">*</span>
+        <%= pc.select :crop_id, options_from_collection_for_select(@crops, :id, :name, pc.object.crop_id), { include_blank: '作物を選択してください' } %>
+      </div>
+      <div class="col-2 d-flex align-items-center mt-4">
+        <%= link_to "#", class: "remove_field btn btn-danger mb-3" do %>
+          <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+        <% end %>
+      </div>
+
+      <div class="col-12">
+        植付方法
+        <%= pc.radio_button :planting_method, "播種", checked: true  %>
+        <%= pc.label :planting_method, '播種' %>
+
+        <%= pc.radio_button :planting_method, "育苗" %>
+        <%= pc.label :planting_method, '育苗' %><br>
+      </div>
+
+      <div class="col-12">作業予定期間<span style="color: red;">*</span></div>
+
+      <div class="col-5">
+        <%= pc.date_field :start_date, class: "form-control mb-3" %>
+      </div>
+
+      <div class="col-2 text-center">.......</div>
+
+      <div class="col-5">
+        <%= pc.date_field :end_date, class: "form-control mb-3" %>
+      </div>
+
+      <div class="col-12">
+        <%= pc.text_area :note, class: "form-control mb-3", placeholder: "メモ" %>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col">
+        <div id="wrapper"></div>
+        <div class="text-center"><%= link_to '+', '#', id: 'add_button', class: "btn btn-outline-dark rounded-circle mt-3 ml-auto shadow" %></div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col text-center my-3">
+        <%= f.submit '更新', class: 'btn btn-form mx-auto px-4', style: "background-color: #D7C748; color: #FFF;" %>
+      </div>
+    </div>
+  <% end %>
+</div>
