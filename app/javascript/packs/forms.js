@@ -84,7 +84,7 @@ document.addEventListener('turbolinks:load', () => {
     if (e.target.closest(".remove_field")) {
       e.preventDefault();
 
-      if (confirm('この詳細を削除してもよろしいですか？')) {
+      if (confirm('この区画を削除してもよろしいですか？\n紐付いている計画が削除される可能性があります')) {
         const removeButton = e.target.closest(".remove_field");
         const nestedFields = removeButton.closest('.nested-fields');
         const destroyField = nestedFields.querySelector('.destroy-field');
