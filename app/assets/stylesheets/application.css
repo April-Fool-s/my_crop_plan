@@ -43,6 +43,7 @@ a .color-black {
 }
 
 /*フォーム統一*/
+[id^="plan_plan_crops_attributes_"][id$="_crop_id"],
 #plan_year,
 #plan_is_active,
 #plan_field_id,

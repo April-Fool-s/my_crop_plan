@@ -2,6 +2,7 @@ class Crop < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
+  has_many :plan_crops, dependent: :destroy
 
   # バリデーション
   validates :name, presence: true

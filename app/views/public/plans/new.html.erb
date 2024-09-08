@@ -24,13 +24,8 @@
     <%= f.fields_for :plan_crops do |pc| %>
     <div class="row">
       <div class="col-12">
-        <%= pc.label :name, "植付作物名" %><span style="color: red;">*</span>
-        <%= pc.text_field :name, class: "form-control", placeholder: "植付作物名", list: "crop-list" %>
-        <datalist id="crop-list">
-          <% Crop.all.each do |crop| %>
-            <option value="<%= crop.name %>">
-          <% end %>
-        </datalist>
+        <%= pc.label :crop_id, "植付作物名" %><span style="color: red;">*</span>
+        <%= pc.select :crop_id, options_from_collection_for_select(@crops, :id, :name), { include_blank: '作物を選択してください' } %>
       </div>
 
       <div class="col-12">

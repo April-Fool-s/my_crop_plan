@@ -42,6 +42,7 @@ class Public::PlansController < ApplicationController
   end
 
   def edit
+    @crops = Crop.all
     set_fields
     set_field_sections
   end
@@ -84,7 +85,7 @@ class Public::PlansController < ApplicationController
   end
 
   def plans_params
-    params.require(:plan).permit(:field_id, :field_section_id, :year, :is_active, plan_crops_attributes: [:id, :name, :planting_method, :start_date, :end_date, :note, :_destroy])
+    params.require(:plan).permit(:field_id, :field_section_id, :year, :is_active, plan_crops_attributes: [:id, :crop_id, :planting_method, :start_date, :end_date, :note, :_destroy])
   end
 
 end
