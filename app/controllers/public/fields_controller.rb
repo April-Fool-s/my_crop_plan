@@ -10,8 +10,9 @@ class Public::FieldsController < ApplicationController
   def create
     @field = current_user.fields.new(fields_params)
     if @field.save
-      redirect_to field_path(@field)
+      redirect_to field_path(@field), notice: "畑を登録しました。"
     else
+      flash.now[:alert] = "畑を登録できませんでした。"
       render 'new'
     end
   end
@@ -48,16 +49,21 @@ class Public::FieldsController < ApplicationController
 
   def update
     if @field.update(fields_params)
-      redirect_to field_path(@field)
+      redirect_to field_path(@field), notice: "畑を編集しました。"
     else
+      flash.now[:alert] = "畑を編集できませんでした。"
       render 'edit'
     end
   end
 
   def destroy
-    @field = Field.find(params[:id])
-    @field.destroy
-    redirect_to fields_path
+    if @field.destroy
+      redirect_to fields_path, notice: "畑を削除しました。"
+    else
+      @field_sections = @field.field_sections
+      flash.now[:alert] = "畑を削除できませんでした。"
+      render 'show'
+    end
   end
 
   def field_section_list
