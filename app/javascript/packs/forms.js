@@ -4,15 +4,20 @@ document.addEventListener('turbolinks:load', () => {
   const wrapper = document.getElementById("wrapper");
   let x = 1;
 
-  // 編集時にxの初期値を設定
-  const existingFields = document.querySelectorAll('.nested-fields');
-  if (existingFields.length > 0) {
-    // 既存のフィールドから最大の番号を取得
-    x = Math.max(...Array.from(existingFields).map(field => {
-      const match = field.querySelector('select[name*="[crop_id]"]').name.match(/\[(\d+)\]/);
-      return match ? parseInt(match[1], 10) : 0;
-    })) + 1;
-  }
+  // IDの生成と管理
+  const generateUniqueIndex = (prefix) => {
+    const existingFields = document.querySelectorAll(`.${prefix}-fields`);
+    let maxIndex = 0;
+
+    existingFields.forEach(field => {
+      const index = field.querySelector(`select[name*="[crop_id]"]`)?.name.match(/\[(\d+)\]/)?.[1];
+      if (index) {
+        maxIndex = Math.max(maxIndex, parseInt(index, 10));
+      }
+    });
+
+    return maxIndex + 1;
+  };
 
   // AJAXリクエストで作物情報を取得
   function fetchCrops() {
