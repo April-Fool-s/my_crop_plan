@@ -37,7 +37,7 @@
               <tr>
                 <td><%= plan.field.name %></td>
                 <td><%= plan.field_section.name %></td>
-                <td><%= crop.name %></td>
+                <td><%= crop.crop.name %></td>
                 <td><%= crop.planting_method %></td>
                 <% (1..12).each do |month| %>
                   <td class="<%= 'active' if crop.start_date.month <= month && crop.end_date.month >= month %>"></td>
