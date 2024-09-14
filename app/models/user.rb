@@ -32,7 +32,7 @@ class User < ApplicationRecord
   private
 
   def create_default_field_and_section
-    field = fields.create(name: "畑A")
+    field = fields.create(name: "畑A", address: "")
     field.field_sections.create(name: "区画A") if field.present?
   end
 
