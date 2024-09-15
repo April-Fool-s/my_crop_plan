@@ -12,7 +12,7 @@ ja:
         field: 畑名
         field_section: 畑区画名
       plan_crops:
-        name: 植付作物名
+        crop: 植付作物名
         planting_method: 植付方法
         start_date: 作業開始予定日
         end_date: 作業終了予定日
