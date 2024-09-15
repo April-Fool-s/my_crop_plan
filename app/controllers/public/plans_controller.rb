@@ -51,6 +51,8 @@ class Public::PlansController < ApplicationController
     if @plan.update(plans_params)
       redirect_to plan_path(@plan), notice: "作付計画を編集しました。"
     else
+      @crops = Crop.all
+      set_plan
       set_fields
       set_field_sections
       flash.now[:alert] = "作付計画を編集できませんでした。"
