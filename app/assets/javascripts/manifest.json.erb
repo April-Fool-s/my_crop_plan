@@ -3,15 +3,6 @@
   "name": "個人向け作付計画アプリ-MyCropPlan-",
   "short_name": "MyCropPlan",
   "start_url": "/",
-  "icons": [
-  <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
-    {
-      "src": "<%= image_path "/my_crop_plan_logo.png" %>",
-      "sizes": "<%= dim %>",
-      "type": "image/png"
-    }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
-  <% end %>
-  ],
   "theme_color": "#99B264",
   "background_color": "#FFFFFF",
   "display": "standalone",
