@@ -3,12 +3,11 @@
   "short_name": "MyCropPlan",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "any",
   "background_color": "#fff",
   "theme_color": "#99B264",
   "icons": [
     {
-      "src": "/app/assets/my_crop_plan_logo.png",
+      "src": "/my_crop_plan_logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
