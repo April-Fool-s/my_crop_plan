@@ -17,7 +17,8 @@ class Public::CropsController < ApplicationController
   end
 
   def index
-    @crops = Crop.all
+    admin_user_ids = Admin.pluck(:id)
+    @crops = Crop.where(user_id: admin_user_ids + [current_user.id])
 
     # 検索機能
     if params[:search].present?
