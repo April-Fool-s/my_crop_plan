@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
 
+  get '/manifest.json', to: 'layouts#manifest'
+
   scope module: :public do
     root to: 'homes#top'
     resources :users, only: [:update] do
