@@ -19,6 +19,21 @@ Turbolinks.start()
 ActiveStorage.start()
 
 document.addEventListener('turbolinks:load', () => {
+  const header = document.querySelector('header');
+  let prevY = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const currentY = window.scrollY;
+    if (currentY < prevY) {
+      header.classList.remove('hidden');
+    } else {
+    if (currentY > 0) {
+        header.classList.add('hidden');
+      }
+    }
+    prevY = currentY;
+  });
+
   document.querySelectorAll('.menu-trigger').forEach(trigger => {
     trigger.addEventListener('click', function(event) {
       event.preventDefault();
