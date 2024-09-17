@@ -15,7 +15,9 @@
           <%= f.text_field :plant_family, placeholder: "ナス科" %>
 
           <%= f.label :rotation_year, "輪作年" %><span style="color: red;">*</span>
-          <%= f.text_field :rotation_year, class: "form-control mb-3", placeholder: "4年以上" %>
+          <%= f.select :rotation_year,
+             [['1年以上', '1年以上'], ['2年以上', '2年以上'], ['3年以上', '3年以上'], ['4年以上', '4年以上'], ['5年以上', '5年以上'], ['連作障害が起こりにくい', '連作障害が起こりにくい']],
+             { include_blank: '輪作年を選択してください' } %>
 
           <%= f.label :companion, "コンパニオンプランツ" %>
           <%= f.text_area :companion, class: "form-control mb-3", placeholder: "ネギ、バジル、ニラ、落花生、 ビガンバナ科、マメ科、シソ科" %>
