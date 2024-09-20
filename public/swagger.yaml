@@ -1,0 +1,73 @@
+openapi: 3.0.3
+
+info:
+  title: MyCropPlan API
+  description: MyCropPlanの作物マスターAPIです
+  version: 1.0.0
+
+servers:
+- url: https://47518c0581d54d4ba18e08e28092dd6e.vfs.cloud9.ap-northeast-1.amazonaws.com/
+  description: ローカル環境
+- url: https://my-crop-plan.com/
+  description: 本番環境
+
+tags:
+  - name: crops
+    description: 作物の操作
+
+paths:
+  /crops:
+    get:
+      summary: 作物一覧取得
+      tags: [crops]
+      responses:
+        '200':
+          description: A list of crops
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Crop'
+
+  /crops/{id}:
+    get:
+      summary: 作物の取得
+      tags: [crops]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A crop object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Crop'
+
+        '404':
+          description: Crop not found
+
+components:
+  schemas:
+    Crop:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: トマト
+        plant_family:
+          type: string
+          example: ナス科
+        rotation_year:
+          type: string
+          example: 4年以上
+        companion:
+          type: string
+          example: ネギ、バジル、ニラ、落花生、ビガンバナ科、マメ科、シソ科
