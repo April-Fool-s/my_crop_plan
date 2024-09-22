@@ -1,7 +1,6 @@
 module Api
   module V1
     class CropsController < ApplicationController
-      before_action :authenticate_user!
 
       def index
         admin_user_ids = Admin.pluck(:id)
