@@ -6,8 +6,6 @@ info:
   version: 1.0.0
 
 servers:
-- url: https://47518c0581d54d4ba18e08e28092dd6e.vfs.cloud9.ap-northeast-1.amazonaws.com/
-  description: ローカル環境
 - url: https://my-crop-plan.com/
   description: 本番環境
 
