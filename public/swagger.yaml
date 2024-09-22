@@ -16,7 +16,7 @@ tags:
     description: 作物の操作
 
 paths:
-  /crops:
+  /api/v1/crops:
     get:
       summary: 作物一覧取得
       tags: [crops]
@@ -30,7 +30,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Crop'
 
-  /crops/{id}:
+  /api/v1/crops/{id}:
     get:
       summary: 作物の取得
       tags: [crops]
