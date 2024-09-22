@@ -16,9 +16,6 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
 
-  get '/swagger', to: redirect('/swagger/index.html')
-  get '/swagger.yaml', to: redirect('/swagger.yaml')
-
   namespace :api do
     namespace :v1 do
       resources :crops, only: [:index, :show]
