@@ -1,3 +1,4 @@
+<%= javascript_pack_tag 'plans' %>
 <%= form_with url: plans_path, method: :get, local: true do %>
    <div class="container">
 
@@ -56,6 +57,23 @@
       </table>
     </div>
   </div>
-  <%= link_to '＋', new_plan_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+  <%#= link_to '＋', new_plan_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+  <%= link_to '＋', '#newPlanModal', data: { toggle: 'modal', dismiss: "modal" }, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+</div>
 
+<!-- newPlanModal -->
+<div class="modal fade" id="newPlanModal" tabindex="-1" role="dialog" aria-labelledby="newPlanModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newPlanModalLabel">計画登録</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "public/plans/new", plan: @plan %>
+      </div>
+    </div>
+  </div>
 </div>
