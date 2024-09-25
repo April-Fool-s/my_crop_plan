@@ -12,7 +12,7 @@ class Public::PlansController < ApplicationController
   def create
     @plan = current_user.plans.new(plans_params)
     if @plan.save
-      redirect_to plan_path(@plan), notice: "作付計画を登録しました。"
+      redirect_to request.referer, notice: "作付計画を登録しました。"
     else
       @crops = Crop.all
       set_fields
@@ -22,12 +22,23 @@ class Public::PlansController < ApplicationController
   end
 
   def plan_table
+    # plan_new
+    @plan = Plan.new
+    @plan_crop = @plan.plan_crops.build
+    @crops = Crop.all
+    set_fields
+
     @current_year = params[:year] || Date.today.year
     @plans = current_user.plans.where(year: @current_year)
   end
 
   def index
+    # plan_new
+    @plan = Plan.new
+    @plan_crop = @plan.plan_crops.build
+    @crops = Crop.all
     set_fields
+
     @plans = current_user.plans.all
     #検索機能の記述
     @plans = @plans.where(year: params[:year]) if params[:year].present?

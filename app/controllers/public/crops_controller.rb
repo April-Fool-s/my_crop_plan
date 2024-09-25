@@ -9,7 +9,7 @@ class Public::CropsController < ApplicationController
   def create
     @crop = current_user.crops.new(crops_params)
     if @crop.save
-      redirect_to crop_path(@crop), notice: "作物マスターを登録しました。"
+      redirect_to request.referer, notice: "作物マスターを登録しました。"
     else
       flash.now[:alert] = "作物マスターを登録できませんでした。"
       render 'new'
@@ -17,6 +17,7 @@ class Public::CropsController < ApplicationController
   end
 
   def index
+    @crop = Crop.new
     admin_user_ids = Admin.pluck(:id)
     @crops = Crop.where(user_id: admin_user_ids + [current_user.id])
 
