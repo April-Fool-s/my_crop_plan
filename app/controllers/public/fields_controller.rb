@@ -10,7 +10,7 @@ class Public::FieldsController < ApplicationController
   def create
     @field = current_user.fields.new(fields_params)
     if @field.save
-      redirect_to field_path(@field), notice: "畑を登録しました。"
+      redirect_to request.referer, notice: "畑を登録しました。"
     else
       flash.now[:alert] = "畑を登録できませんでした。"
       render 'new'
@@ -18,6 +18,8 @@ class Public::FieldsController < ApplicationController
   end
 
   def index
+    @field = Field.new
+    @field_section = @field.field_sections.build
     @fields = current_user.fields.all
 
         # 住所の部分一致検索

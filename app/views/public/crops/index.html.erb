@@ -42,5 +42,23 @@
       </div>
     <% end %>
   </div>
-  <%= link_to '＋', new_crop_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+  <%#= link_to '＋', new_crop_path, 'data-turbolinks': false, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+  <%= link_to '＋', '#newCropModal', data: { toggle: 'modal', dismiss: "modal" }, class: "btn rounded-circle create-btn", style: "background-color: #99B264; color: #FFF;" %>
+</div>
+
+<!-- newCropModal -->
+<div class="modal fade" id="newCropModal" tabindex="-1" role="dialog" aria-labelledby="newCropModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newCropModalLabel">作物登録</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "public/crops/new", crop: @crop %>
+      </div>
+    </div>
+  </div>
 </div>

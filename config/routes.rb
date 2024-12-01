@@ -49,4 +49,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :admin do
+    root to: 'users#index'
+    get 'users/show'
+  end
+
 end
